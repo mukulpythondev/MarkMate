@@ -50,32 +50,32 @@ export function Sidebar() {
           <SidebarItem 
             icon={<CloudUpload size={20} />} 
             label="Upload Sheets" 
-            href="/upload" 
-            active={currentPath === '/upload'} 
+            href="/dashboard/upload" 
+            active={currentPath === '/dashboard/upload'} 
           />
           <SidebarItem 
             icon={<BarChart3 size={20} />} 
             label="Analytics" 
-            href="/analytics" 
-            active={currentPath === '/analytics'} 
+            href="/dashboard/analytics" 
+            active={currentPath === '/dashboard/analytics'} 
           />
-          <SidebarItem 
+          {/* <SidebarItem 
             icon={<HelpCircle size={20} />} 
             label="Student Doubts" 
             href="/doubts" 
             active={currentPath === '/doubts'} 
-          />
+          /> */}
           <SidebarItem 
             icon={<CheckSquare size={20} />} 
             label="To-Do" 
-            href="/todo" 
-            active={currentPath === '/todo'} 
+            href="/dashboard/todo" 
+            active={currentPath === '/dashboard/todo'} 
           />
-          <SidebarItem 
+          <SidebarItem
             icon={<BookOpen size={20} />} 
             label="Homework" 
             href="/homework" 
-            active={currentPath === '/homework'} 
+            active={currentPath === '/dashboard/homework'} 
           />
         </div>
       </div>
