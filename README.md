@@ -1,4 +1,5 @@
-# 🧠 MarkMate – AI-Powered Answer Sheet Evaluation Platform
+# 🧠 MarkMate – AI-Powered Teacher Assistant
+        - Let Teacher teach we will do rest
 
 MarkMate is a smart, AI-powered platform built for educators to automate the evaluation of handwritten answer sheets using OCR, NLP, and Retrieval-Augmented Generation (RAG). It streamlines the grading process, saving time and ensuring consistent, instant feedback for students.
 
