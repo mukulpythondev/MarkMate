@@ -44,8 +44,8 @@ export function Sidebar() {
           <SidebarItem 
             icon={<BarChart3 size={20} />} 
             label="Dashboard" 
-            href="/" 
-            active={currentPath === '/'} 
+            href="/dashboard" 
+            active={currentPath === '/dashboard'} 
           />
           <SidebarItem 
             icon={<CloudUpload size={20} />} 
@@ -74,7 +74,7 @@ export function Sidebar() {
           <SidebarItem
             icon={<BookOpen size={20} />} 
             label="Homework" 
-            href="/homework" 
+            href="/dashboard/homework" 
             active={currentPath === '/dashboard/homework'} 
           />
         </div>

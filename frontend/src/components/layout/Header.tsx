@@ -1,8 +1,10 @@
-
 import React from 'react';
 import { Bell, ChevronDown, Search } from 'lucide-react';
+import { useAuth } from '@/context/AuthContext'; // adjust path as needed
 
 export function Header() {
+  const { user } = useAuth();
+
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-white px-6">
       <div className="flex-1">
@@ -31,11 +33,11 @@ export function Header() {
           <img
             alt="Avatar"
             className="h-8 w-8 rounded-full"
-            src="https://github.com/shadcn.png"
+            src={user?.avatar || 'https://github.com/shadcn.png'}
           />
           <div className="text-sm">
-            <div className="font-medium">Moni Roy</div>
-            <div className="text-xs text-gray-500">Admin</div>
+            <div className="font-medium">{user?.name || 'Guest'}</div>
+            <div className="text-xs text-gray-500">{user?.role || 'User'}</div>
           </div>
           <ChevronDown className="h-4 w-4" />
         </div>

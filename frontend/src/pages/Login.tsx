@@ -1,26 +1,38 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import Navbar from '@/components/Home/Navbar';
 import Footer from '@/components/Home/Footer';
+import axios from '@/lib/axios';
+import { useAuth } from '@/context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { fetchCurrentUser } = useAuth();
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempt with:', { email, password });
-    // Authentication logic would go here
+    try {
+      await axios.post(
+        '/users/login',
+        { email, password },
+        { withCredentials: true } // Ensure cookies are saved
+      );
+      await fetchCurrentUser()
+      navigate('/dashboard'); // or your desired protected route
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Login failed');
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <div className="flex-grow container mx-auto flex items-center justify-center py-12">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
           <div className="text-center">
@@ -31,12 +43,14 @@ const Login = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input 
                 id="email"
-                type="email" 
-                placeholder="your@email.com" 
+                type="email"
+                placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -52,8 +66,8 @@ const Login = () => {
               </div>
               <Input 
                 id="password"
-                type="password" 
-                placeholder="••••••••" 
+                type="password"
+                placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -68,14 +82,14 @@ const Login = () => {
           <div className="text-center text-sm mt-6">
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <Link to="/register" className="text-[#84b817] hover:underline">
+              <Link to="/signup" className="text-[#84b817] hover:underline">
                 Sign up
               </Link>
             </p>
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );
