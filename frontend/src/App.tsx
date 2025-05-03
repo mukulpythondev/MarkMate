@@ -21,6 +21,7 @@ import Unauthorized from "./pages/Unauthorized";
 
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import StudentDashboard from "./pages/StudentDashboard";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +53,7 @@ const App = () => (
 
             {/* Protected Routes for Students */}
             <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
-              <Route path="/student-dashboard" element={<div>Student Dashboard Coming Soon</div>} />
+              <Route path="/student-dashboard" element={<StudentDashboard/>} />
             </Route>
 
             {/* Catch-all */}
